@@ -3,6 +3,8 @@ class AUGLMGTFire extends KFHighROFFire;
 
 var float AmbientSoundPitchMult; //stores ambient sound pitch multiplier
 var             float           ZoomedRecoilMult; //zoomed recoil multiplier
+var vector ScopedShakeOffsetMag; //Shake offset mag used for 3d scopes
+var vector ScopedShakeOffsetRate; //Shake offset rate used for 3d scopes
 
 // Overriden to change fire end sound pitch (to match FAL rpm to AUG LMG-T)
 state FireLoop
@@ -219,6 +221,8 @@ function ModeDoFire()
         {
             maxVerticalRecoilAngle=default.maxVerticalRecoilAngle*ZoomedRecoilMult;
             maxHorizontalRecoilAngle=default.maxVerticalRecoilAngle*ZoomedRecoilMult;
+            ShakeOffsetMag=default.ScopedShakeOffsetMag;
+            ShakeOffsetRate=default.ScopedShakeOffsetRate;
         }
         else
         {
@@ -230,6 +234,8 @@ function ModeDoFire()
     {
         maxVerticalRecoilAngle=default.maxVerticalRecoilAngle;
         maxHorizontalRecoilAngle=default.maxVerticalRecoilAngle;
+        ShakeOffsetMag=default.ShakeOffsetMag;
+        ShakeOffsetRate=default.ShakeOffsetRate;
     }
 
 	Super.ModeDoFire();
@@ -288,12 +294,15 @@ defaultproperties
      AmmoClass=Class'CuteWeapons.AUGLMGTAmmo'
      AmmoPerFire=1
      
-	 ShakeOffsetMag=(X=0.0,Y=0.0,Z=0.5)
-	 ShakeOffsetRate=(X=1000.0,Y=1000.0,Z=1000.0)
-	 ShakeOffsetTime=1.15
-	 ShakeRotMag=(X=50.0,Y=50.0,Z=300.0)
-	 ShakeRotRate=(X=7500.0,Y=7500.0,Z=7500.0)
-	 ShakeRotTime=0.65
+     ShakeOffsetMag=(X=6.0,Y=3.0,Z=7.5)
+     ShakeOffsetRate=(X=1000.0,Y=1000.0,Z=1000.0)
+     ShakeOffsetTime=1.25
+     ShakeRotMag=(X=50.0,Y=50.0,Z=350.0)
+     ShakeRotRate=(X=5000.0,Y=5000.0,Z=5000.0)
+     ShakeRotTime=0.75
+     
+     ScopedShakeOffsetMag=(X=0.0,Y=0.0,Z=0.0)
+     ScopedShakeOffsetRate=(X=1000.0,Y=1000.0,Z=1000.0)
      
      FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
      aimerror=42.000000
